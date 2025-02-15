@@ -1,6 +1,6 @@
-SRCS =  server.c\
+SRCS =  server.c libft/ft_calloc.c libft/ft_strlen.c\
 
-SRC_C = client.c \
+SRC_C = client.c libft/ft_atoi.c \
 
 
 OBJS = $(SRCS:.c=.o)
@@ -8,30 +8,22 @@ OBJS_C = $(SRC_C:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = server
-NAME_C = client
+SERVER = server
+CLIENT = client
 
-all:$(NAME)
+all:$(SERVER) $(CLIENT)
 
-$(NAME): $(OBJS)
-        $(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(SERVER): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(SERVER)
 
-cl : $(OBJB)
-        $(CC) $(CFLAGS) $(OBJB) -o $(NAME_B)
+$(CLIENT) : $(OBJS_C)
+	$(CC) $(CFLAGS) $(OBJS_C) -o $(CLIENT)
 
 clean:
-        rm -f $(OBJS)
-
-clean_b:
-        rm -f $(OBJB)
-
+	rm -f $(OBJS) $(OBJS_C)
 
 fclean: clean
-        rm -f $(NAME)
-
-fclean_b: clean_b
-        rm -f $(NAME_B)
+	rm -f $(SERVER) $(CLIENT)
 
 re: fclean all
-re_b: fclean_b bonus
-.SECONDARY:$(OBJS) $(OBJB)%
+.SECONDARY:$(OBJS) $(OBJS_C)
