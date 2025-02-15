@@ -1,4 +1,6 @@
 SRCS =  server.c libft/ft_calloc.c libft/ft_strlen.c\
+        ft_printf/ft_printf.c ft_printf/ft_format.c ft_printf/ft_putstr.c\
+        ft_printf/ft_putchar.c ft_printf/ft_putnbr.c\
 
 SRC_C = client.c libft/ft_atoi.c \
 

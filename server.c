@@ -14,7 +14,7 @@ void binaryToDecimal(char *binary)
     }
     free(binary);
     binary = ft_calloc(9, sizeof(char));
-    printf("%c\n", decimal);
+    ft_printf("%c", decimal);
 }
 
 void    fall_str(char c)
@@ -42,11 +42,11 @@ void signal_handler(int sig)
 {   
     // printf("--%s\n", binary);
     if (sig == SIGUSR1)
-    fall_str('0');
+        fall_str('0');
     else if (sig == SIGUSR2)
-    fall_str('1');
+        fall_str('1');
     if(ft_strlen(binary) == 8)
-    binaryToDecimal(binary);
+        binaryToDecimal(binary);
 }
 
 int main()
@@ -61,7 +61,7 @@ int main()
     sigaction(SIGUSR1, &sg, NULL);
     sigaction(SIGUSR2, &sg, NULL);
     pid = getpid();
-    printf("%d\n", pid);
+    ft_printf("%d\n", pid);
     while(1) sleep(1);
     return (0);
 }
