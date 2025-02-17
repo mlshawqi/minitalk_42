@@ -14,7 +14,6 @@ void signal_handler(int sig, siginfo_t *info, void *context)
         bit = 1;
     c = (c << 1) | (bit & 1);
     len++;
-    // ft_printf("Received bit: %d, c: %c, len: %d\n", bit, c, len);
     if(len == 8)
     {
         len = 0;
