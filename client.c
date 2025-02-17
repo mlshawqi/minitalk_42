@@ -6,16 +6,15 @@ void	send_bits(pid_t pid, unsigned char octet)
 	int				i;
 	unsigned char	bit;
 
-	i = 7;
-	while (i >= 0)
+	i = 8;
+	while (i--)
 	{
 		bit = (octet >> i) & 1;
 		if(bit == 0)
             kill(pid, SIGUSR1);
         else
             kill(pid, SIGUSR2);
-        usleep(500);
-        i--;
+        usleep(45);
 	}
 }
 
