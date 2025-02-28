@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: machaouk <marvin@42.fr>                    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-02-17 22:06:09 by machaouk          #+#    #+#             */
-/*   Updated: 2025-02-17 22:06:09 by machaouk         ###   ########.fr       */
+/*   Created: 2025-02-17 22:06:14 by machaouk          #+#    #+#             */
+/*   Updated: 2025/02/17 23:20:14 by machaouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
+
+void	bonus_handler(int sig)
+{
+	if (sig == SIGUSR1)
+		ft_printf("message received\n");
+}
 
 void	send_bits(pid_t pid, unsigned char octet)
 {
@@ -44,9 +50,9 @@ int	main(int argc, char *argv[])
 	{
 		pid = ft_atoi(argv[1]);
 		i = 0;
-		if (pid <= 0)
+		if (signal(SIGUSR1, bonus_handler) == SIG_ERR || pid <= 0)
 		{
-			write(2, "Invalid pid\n", 12);
+			write(2, "Invalid pid, or signal Fail\n", 28);
 			exit(0);
 		}
 		while (argv[2][i] != '\0')

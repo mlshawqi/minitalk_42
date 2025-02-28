@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: machaouk <marvin@42.fr>                    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-02-17 22:05:35 by machaouk          #+#    #+#             */
-/*   Updated: 2025/02/17 23:09:22 by machaouk         ###   ########.fr       */
+/*   Created: 2025-02-17 22:05:44 by machaouk          #+#    #+#             */
+/*   Updated: 2025/02/17 23:10:03 by machaouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	print_byte(int *len, unsigned char *c)
 {
@@ -51,7 +51,8 @@ void	signal_handler(int sig, siginfo_t *info, void *context)
 	c = (c << 1) | (bit & 1);
 	len++;
 	if (print_byte(&len, &c) == 1)
-		return ;
+		if (kill(info->si_pid, SIGUSR1) == -1)
+			exit (0);
 }
 
 int	main(void)
